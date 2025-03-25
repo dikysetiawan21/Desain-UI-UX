@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokopedia Clone - Modern Design</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+
+      :root {
+        --primary-color: #03ac0e;
+        --text-gray: #6c727c;
+        --bg-light: #f3f4f5;
+        --border-color: #e0e0e0;
+      }
+
+      .sticky-nav {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: white;
+      }
+
+      .top-banner {
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .free-shipping {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .free-shipping-left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #0a0a0a;
+        font-size: 13px;
+      }
+
+      .free-shipping-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .free-shipping-right a {
+        color: #6d7588;
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .free-shipping-right a:hover {
+        color: var(--primary-color);
+      }
+
+      .navbar {
+        background: white;
+        padding: 12px 0;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #topnav {
+        background-color: var(--bg-light);
+        height: 32px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 32px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      #topnav-promo {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-gray);
+        font-size: 11px;
+        line-height: 16px;
+        text-decoration: none;
+      }
+
+      #topnav-promo .promo-bold {
+        color: #212121;
+        font-weight: 700;
+      }
+
+      #topnav-promo:hover {
+        color: var(--primary-color);
+      }
+
+      #topnav-promo .mobile-icon {
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 2px;
+      }
+
+      #topnav-promo .arrow-icon {
+        font-size: 14px;
+        margin-left: 2px;
+      }
+
+      #topnav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        height: 100%;
+      }
+
+      #topnav-links a {
+        color: var(--text-gray);
+        text-decoration: none;
+        font-size: 11px;
+        line-height: 16px;
+        white-space: nowrap;
+      }
+
+      #topnav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .navbar-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .logo {
+        color: var(--primary-color);
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: -10px;
+      }
+
+      .kategori {
+        color: #31353b;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        display: flex;
+        align-items: flex-start;
+        padding: 8px 0;
+        margin-top: -14px;
+      }
+
+      .search-section {
+        flex: 1;
+        margin: 0 24px;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .suggested-items {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+      }
+
+      .suggested-items span {
+        color: #6c727c;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .nav-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+      }
+
+      .top-buttons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .location-section {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #6c727c;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .location-section:hover {
+        background-color: var(--bg-light);
+      }
+
+      .location-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .location-text {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .location-text strong {
+        color: #212121;
+      }
+
+      .location-text .arrow-down {
+        font-size: 10px;
+        margin-left: 2px;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 12px;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 16px 12px 40px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+
+      .nav-buttons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .cart-section {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+
+      .vertical-divider {
+        width: 1px;
+        height: 24px;
+        background-color: var(--border-color);
+        margin: 0 8px;
+      }
+
+      .auth-buttons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-button {
+        padding: 6px 16px;
+        border: 1px solid var(--primary-color);
+        background: none;
+        cursor: pointer;
+        color: var(--primary-color);
+        font-size: 14px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-button:hover {
+        background-color: rgba(3, 172, 14, 0.1);
+      }
+
+      .primary-button {
+        background: var(--primary-color);
+        color: white;
+        border-radius: 8px;
+        padding: 8px 16px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+      }
+
+      .primary-button:hover {
+        background: #028f0c;
+      }
+
+      .mobile-icon {
+        width: 10px; /* Sesuaikan ukuran */
+        height: auto; /* Menjaga aspek rasio */
+      }
+
+      .content {
+        max-width: 1200px;
+        margin: 24px auto;
+        padding: 0 32px;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        font-size: 12px;
+      }
+
+      .breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .breadcrumb span {
+        color: #6c727c;
+      }
+
+      .product-container {
+        display: grid;
+        grid-template-columns: 400px 1fr 300px;
+        gap: 32px;
+      }
+
+      .product-gallery {
+        position: relative;
+        width: 100%;
+        margin-bottom: 24px;
+      }
+
+      .main-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        background: #fff;
+      }
+
+      .thumbnail-container {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+
+      .thumbnail {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        object-fit: cover;
+      }
+
+      .thumbnail.active {
+        border-color: var(--primary-color);
+      }
+
+      .thumbnail:hover {
+        border-color: #e0e0e0;
+      }
+
+      .product-info {
+        padding-right: 24px;
+      }
+
+      .product-title {
+        font-size: 20px;
+        color: #212121;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #6d7588;
+        font-size: 14px;
+        margin: 8px 0;
+      }
+
+      .rating-value {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .rating-value span:first-child {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .rating-star {
+        color: #ffc400;
+        font-size: 16px;
+      }
+
+      .rating-count {
+        color: #6d7588;
+        font-size: 14px;
+      }
+
+      .rating-separator {
+        margin: 0 6px;
+        color: #6d7588;
+        font-size: 14px;
+      }
+
+      .product-sold {
+        color: #6d7588;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .price-section {
+        margin: 12px 0;
+      }
+
+      .price {
+        font-size: 32px;
+        font-weight: bold;
+        color: #212121;
+      }
+
+      .original-price {
+        color: #6c727c;
+        text-decoration: line-through;
+        font-size: 14px;
+        margin-top: 4px;
+      }
+
+      .discount {
+        color: #ff5722;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 8px;
+      }
+
+      .variant-section {
+        padding: 12px 0;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        margin: 12px 0;
+      }
+
+      .variant-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #212121;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .variant-subtitle {
+        color: #6d7588;
+        font-size: 14px;
+        margin-left: 8px;
+        font-weight: normal;
+      }
+
+      .variant-options {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .variant-option {
+        padding: 8px 20px;
+        border-radius: 8px;
+        background: #f3f4f5;
+        color: #6d7588;
+        font-size: 14px;
+        cursor: not-allowed;
+        opacity: 0.7;
+        transition: all 0.2s ease;
+        border: 1px solid #e5e7e9;
+      }
+
+      .variant-option:hover {
+        opacity: 0.8;
+      }
+
+      .color-variant {
+        margin-bottom: 24px;
+      }
+
+      .product-details {
+        margin-top: 24px;
+      }
+
+      .detail-tabs {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .tab-button {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+      }
+
+      .tab-button.active {
+        background-color: var(--bg-light);
+      }
+
+      .detail-content {
+        padding: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .detail-item {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .detail-label {
+        color: #6c727c;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .detail-value {
+        color: #212121;
+        font-size: 14px;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      .order-section {
+        margin-top: 32px;
+      }
+
+      .order-card {
+        padding: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .quantity-btn {
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .quantity-input {
+        width: 40px;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .stock-status {
+        color: #6c727c;
+        font-size: 14px;
+      }
+
+      .subtotal {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 16px;
+      }
+
+      .action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6c727c;
+        transition: all 0.2s ease;
+      }
+
+      .action-btn img {
+        width: 16px;
+        height: 16px;
+        opacity: 0.8;
+      }
+
+      .action-btn:hover {
+        background-color: var(--bg-light);
+      }
+
+      .chat-btn {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+      }
+
+      .wishlist-btn {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+      }
+
+      .share-btn {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+      }
+
+      .order-card h3 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #212121;
+        margin-bottom: 16px;
+      }
+
+      .stock-status {
+        font-size: 13px;
+      }
+
+      .stock-status .label {
+        color: #6c727c;
+      }
+
+      .stock-status .value {
+        color: #ef144a;
+        font-weight: 500;
+      }
+
+      .action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        color: #6c727c;
+        transition: all 0.2s ease;
+      }
+
+      .product-tabs {
+        display: flex;
+        gap: 32px;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2px;
+      }
+
+      .tab {
+        padding: 6px 0;
+        font-size: 16px;
+        color: #6d7588;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .tab.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-color);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .info-section {
+        margin-top: 16px;
+      }
+
+      .info-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .info-icon {
+        width: 24px;
+        height: 24px;
+        color: #6d7588;
+      }
+
+      .info-content {
+        flex: 1;
+      }
+
+      .info-title {
+        font-weight: 600;
+        color: #31353b;
+        margin-bottom: 4px;
+      }
+
+      .info-description {
+        color: #6d7588;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .detail-row {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .detail-label {
+        color: #6d7588;
+        min-width: 130px;
+      }
+
+      .detail-value {
+        color: #31353b;
+        margin-left: 8px;
+      }
+
+      .detail-value.highlight {
+        color: var(--primary-color);
+      }
+
+      .product-description {
+        margin-top: 24px;
+      }
+
+      .product-description p {
+        margin-bottom: 16px;
+        line-height: 1.5;
+        color: #31353b;
+      }
+
+      .product-description p:first-child {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .product-description ul {
+        margin: 16px 0;
+        padding-left: 20px;
+      }
+
+      .product-description li {
+        margin-bottom: 12px;
+        line-height: 24px;
+      }
+
+      .product-description li:last-child {
+        margin-bottom: 0;
+      }
+
+      .product-description li ul {
+        margin: 12px 0;
+      }
+
+      .product-description li li {
+        margin-bottom: 8px;
+        color: #6d7588;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sticky-nav">
+      <nav id="topnav">
+        <a href="#" id="topnav-promo">
+          <img class="mobile-icon" src="/image/phone.png" alt="Ikon Mobile" />
+          <span class="promo-bold">Gratis Ongkir + Banyak Promo</span>
+          belanja di aplikasi
+          <span class="arrow-icon">›</span>
+        </a>
+        <div id="topnav-links">
+          <a href="#">Tentang Tokopedia</a>
+          <a href="#">Mitra Tokopedia</a>
+          <a href="#">Mulai Berjualan</a>
+          <a href="#">Promo</a>
+          <a href="#">Tokopedia Care</a>
+        </div>
+      </nav>
+    </div>
+    <nav class="navbar sticky-nav">
+      <div class="navbar-content">
+        <div class="logo-section">
+          <a href="#" class="logo">
+            <img src="image/tokped.png" alt="Tokopedia Logo" class="logo-img" />
+          </a>
+          <a href="#" class="kategori">Kategori</a>
+        </div>
+        <div class="search-section">
+          <div class="search-bar">
+            <img src="image/search.png" alt="Search" class="search-icon" />
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Cari di Tokopedia"
+            />
+          </div>
+          <div class="suggested-items">
+            <span>Samsung Note 10</span>
+            <span>Charger Mobil</span>
+            <span>Samsung A73</span>
+            <span>Pull Up Bar</span>
+            <span>Hdd 1tb</span>
+            <span>Xbox Series X</span>
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="top-buttons">
+            <div class="cart-section">
+              <a href="#" class="cart-link">
+                <img
+                  src="image/basket.png"
+                  alt="Shopping Cart"
+                  class="cart-icon"
+                />
+              </a>
+              <div class="vertical-divider"></div>
+            </div>
+            <div class="auth-buttons">
+              <button class="nav-button">Masuk</button>
+              <a href="#" class="primary-button">Daftar</a>
+            </div>
+          </div>
+          <div class="location-section">
+            <img
+              src="image/icon_location.png"
+              alt="Location"
+              class="location-icon"
+            />
+            <div class="location-text">
+              Dikirim ke
+              <strong>Jakarta Pusat</strong>
+              <span class="arrow-down">▼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="content">
+      <div class="breadcrumb">
+        <a href="#">Home</a>
+        <span>›</span>
+        <a href="#">Komputer & Laptop</a>
+        <span>›</span>
+        <a href="#">Laptop</a>
+        <span>›</span>
+        <a href="#">Macbook</a>
+        <span>›</span>
+        <span
+          >[SPECIAL BUNDLING] Apple Macbook PRO M2 13" 512GB 256GB Garansi
+          Resmi</span
+        >
+      </div>
+
+      <div class="product-container">
+        <div class="product-gallery">
+          <img
+            src="image/1.jpg"
+            alt="MacBook Pro M2"
+            class="main-image"
+            id="mainImage"
+          />
+          <div class="thumbnail-container">
+            <img
+              src="image/1.jpg"
+              alt="MacBook Pro Front View"
+              class="thumbnail active"
+              onclick="changeImage('image/1.jpg', this)"
+            />
+            <img
+              src="image/2.jpg"
+              alt="MacBook Pro Side View"
+              class="thumbnail"
+              onclick="changeImage('image/2.jpg', this)"
+            />
+            <img
+              src="image/3.jpg"
+              alt="MacBook Pro Specs"
+              class="thumbnail"
+              onclick="changeImage('image/3.jpg', this)"
+            />
+            <img
+              src="image/4.jpg"
+              alt="MacBook Pro Details"
+              class="thumbnail"
+              onclick="changeImage('image/4.jpg', this)"
+            />
+            <img
+              src="image/5.jpg"
+              alt="MacBook Pro Back View"
+              class="thumbnail"
+              onclick="changeImage('image/5.jpg', this)"
+            />
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h1 class="product-title">
+            [SPECIAL BUNDLING] Apple Macbook Pro M2 13" 512GB 256GB Garansi
+            Resmi
+          </h1>
+          <div class="product-rating">
+            <span class="product-sold">Terjual 5</span>
+            <span class="rating-separator">•</span>
+            <div class="rating-value">
+              <span>4.5</span>
+              <span class="rating-star">★</span>
+              <span class="rating-count">(2 rating)</span>
+            </div>
+          </div>
+          <div class="price-section">
+            <div class="price">Rp25.498.000</div>
+          </div>
+
+          <div class="variant-section">
+            <div class="color-variant">
+              <h3 class="variant-title">
+                Pilih warna:<span class="variant-subtitle">2 Warna</span>
+              </h3>
+              <div class="variant-options">
+                <div class="variant-option">Space Gray</div>
+                <div class="variant-option">Silver</div>
+              </div>
+            </div>
+
+            <div class="memory-variant">
+              <h3 class="variant-title">
+                Pilih kapasitas memori:<span class="variant-subtitle"
+                  >2 Kapasitas Memori</span
+                >
+              </h3>
+              <div class="variant-options">
+                <div class="variant-option">256GB</div>
+                <div class="variant-option">512GB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-info-section">
+            <div class="product-tabs">
+              <div class="tab active" onclick="switchTab('detail')">Detail</div>
+              <div class="tab" onclick="switchTab('info')">Info Penting</div>
+            </div>
+
+            <div id="detail" class="tab-content active">
+              <div class="detail-row">
+                <span class="detail-label">Kondisi</span>
+                <span class="detail-value">: Baru</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Min. Pemesanan</span>
+                <span class="detail-value">: 1 Buah</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Etalase</span>
+                <span class="detail-value highlight">: Macbook</span>
+              </div>
+
+              <div class="product-description">
+                <p>
+                  MacBook Pro M2. Kekuatan super dalam bentuk yang paling
+                  portabel.
+                </p>
+
+                <p>Spesifikasi:</p>
+                <ul>
+                  <li>
+                    Chip Apple M2
+                    <ul>
+                      <li>
+                        CPU 8-core dengan 4 performance core dan 4 efficiency
+                        core
+                      </li>
+                      <li>GPU 10-core</li>
+                      <li>Neural Engine 16-core</li>
+                      <li>
+                        Media engine yang mendukung H.264, HEVC, ProRes, dan
+                        ProRes RAW
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Memory
+                    <ul>
+                      <li>8GB unified memory</li>
+                      <li>Opsi: 256GB atau 512GB SSD</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Display
+                    <ul>
+                      <li>Liquid Retina display 13.3-inch (diagonal)</li>
+                      <li>
+                        Resolusi native 2560 x 1600 pada 227 pixel per inch
+                      </li>
+                      <li>500 nits brightness</li>
+                      <li>Wide color (P3)</li>
+                      <li>True Tone technology</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Ports & Konektivitas
+                    <ul>
+                      <li>2x Thunderbolt / USB 4 ports</li>
+                      <li>3.5 mm headphone jack</li>
+                      <li>Wi-Fi 6 (802.11ax)</li>
+                      <li>Bluetooth 5.0</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Baterai & Power
+                    <ul>
+                      <li>Hingga 20 jam pemakaian</li>
+                      <li>67W USB-C Power Adapter</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <p>Paket pembelian termasuk:</p>
+                <ul>
+                  <li>MacBook Pro</li>
+                  <li>67W USB-C Power Adapter</li>
+                  <li>USB-C Charge Cable (2 m)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="info" class="tab-content">
+              <div class="info-section">
+                <div class="info-item">
+                  <div class="info-icon">🛡️</div>
+                  <div class="info-content">
+                    <div class="info-title">Garansi Resmi Apple</div>
+                    <div class="info-description">
+                      1 tahun garansi resmi dari Apple Indonesia. Berlaku untuk
+                      kerusakan manufaktur, tidak termasuk kerusakan fisik atau
+                      water damage.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">↩️</div>
+                  <div class="info-content">
+                    <div class="info-title">Kebijakan Pengembalian</div>
+                    <div class="info-description">
+                      Dapat dikembalikan dalam 14 hari setelah diterima jika
+                      produk belum dibuka dan masih dalam kondisi segel.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">✨</div>
+                  <div class="info-content">
+                    <div class="info-title">Produk Original</div>
+                    <div class="info-description">
+                      100% original dan bersegel. Garansi uang kembali jika
+                      terbukti tidak original.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">📦</div>
+                  <div class="info-content">
+                    <div class="info-title">Pengiriman Aman</div>
+                    <div class="info-description">
+                      Dikemas dengan aman menggunakan bubble wrap dan kardus
+                      double layer. Asuransi pengiriman otomatis aktif.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-section">
+          <div class="order-card">
+            <h3>Atur jumlah dan catatan</h3>
+            <div class="quantity-control">
+              <button class="quantity-btn" disabled>−</button>
+              <input type="text" value="0" class="quantity-input" readonly />
+              <button class="quantity-btn" disabled>+</button>
+              <span class="stock-status">
+                <span class="label">Stok: </span>
+                <span class="value">Habis</span>
+              </span>
+            </div>
+            <div class="subtotal">
+              <span class="subtotal-label">Subtotal</span>
+              <span class="subtotal-value">-</span>
+            </div>
+            <div class="action-buttons">
+              <button class="action-btn">
+                <img src="image/comment.png" alt="Chat" />
+                <span style="font-weight: 700">Chat</span>
+              </button>
+              <button class="action-btn">
+                <img src="image/heart.png" alt="Wishlist" />
+                <span style="font-weight: 700">Wishlist</span>
+              </button>
+              <button class="action-btn">
+                <img src="image/share.png" alt="Share" />
+                <span style="font-weight: 700">Share</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      function changeImage(src, thumbnail) {
+        // Update main image
+        document.getElementById("mainImage").src = src;
+
+        // Remove active class from all thumbnails
+        document.querySelectorAll(".thumbnail").forEach((thumb) => {
+          thumb.classList.remove("active");
+        });
+
+        // Add active class to clicked thumbnail
+        thumbnail.classList.add("active");
+      }
+
+      function switchTab(tabId) {
+        // Remove active class from all tabs and contents
+        document
+          .querySelectorAll(".tab")
+          .forEach((tab) => tab.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((content) => content.classList.remove("active"));
+
+        // Add active class to selected tab and content
+        document
+          .querySelector(`.tab[onclick="switchTab('${tabId}')"]`)
+          .classList.add("active");
+        document.getElementById(tabId).classList.add("active");
+      }
+    </script>
+  </body>
+</html>
